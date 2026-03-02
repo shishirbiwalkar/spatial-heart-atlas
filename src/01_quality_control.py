@@ -22,7 +22,7 @@ print("SPATIAL HEART ATLAS - QUALITY CONTROL")
 print("=" * 50)
 
 #Loading Single cell data
-print("\n📂 Loading Single-Cell Data...")
+print("\n Loading Single-Cell Data...")
 
 adata = sc.read_10x_mtx(
     'data/scRNA_raw',  
@@ -34,10 +34,10 @@ adata = sc.read_10x_mtx(
 adata.obs['sample_id'] = 'heart_1k_v3'
 adata.var_names_make_unique()
 
-print(f"✅ Loaded {adata.n_obs} cells and {adata.n_vars} genes.")
+print(f" Loaded {adata.n_obs} cells and {adata.n_vars} genes.")
 
 
-print("\n📊 Calculating QC metrics...")
+print("\nCalculating QC metrics...")
 
 #Calculate mitochondrial genes percentage
 adata.var['mt'] = adata.var_names.str.startswith('MT-')
@@ -53,7 +53,7 @@ adata.obs['n_genes_by_counts'] = (adata.X > 0).sum(axis=1)
 #Calculate total counts per cell
 adata.obs['total_counts'] = np.sum(adata.X, axis=1)
 
-print("✅ QC metrics calculated:")
+print("QC metrics calculated:")
 print(f"   - Mitochondrial gene percentage (pct_counts_mt)")
 print(f"   - Ribosomal gene percentage (pct_counts_ribo)")
 print(f"   - Number of genes by counts (n_genes_by_counts)")
@@ -62,7 +62,7 @@ print(f"   - Total counts (total_counts)")
 
 #Plot QC Metrics
 
-print("\n📈 Plotting QC metrics...")
+print("\n Plotting QC metrics...")
 
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
@@ -101,12 +101,12 @@ plt.colorbar(scatter, ax=axes[1, 1], label='MT %')
 plt.tight_layout()
 plt.savefig('figures/qc_metrics.png', dpi=150, bbox_inches='tight')
 plt.close()
-print("✅ Saved: figures/qc_metrics.png")
+print("Saved: figures/qc_metrics.png")
 
 
 #4. Filtering
 
-print("\n🔽 Filtering cells and genes...")
+print("\n Filtering cells and genes...")
 
 # Store original counts
 print(f"Before filtering: {adata.n_obs} cells, {adata.var.shape[0]} genes")
@@ -128,20 +128,20 @@ print(f"After filtering: {adata.n_obs} cells, {adata.var.shape[0]} genes")
 
 #SAVE FILTERED DATA
 
-print("\n💾 Saving filtered data...")
+print("\n Saving filtered data...")
 
 #Save as h5ad file
 adata.write('data/scRNA_qc.h5ad', compression='gzip')
-print("✅ Saved: data/scRNA_qc.h5ad")
+print(" Saved: data/scRNA_qc.h5ad")
 
 #Summary stats
 print("\n" + "=" * 50)
-print("📋 SUMMARY STATISTICS")
+print(" SUMMARY STATISTICS")
 print("=" * 50)
 print(f"Total cells: {adata.n_obs}")
 print(f"Total genes: {adata.n_vars}")
 print(f"Mean counts per cell: {adata.obs['total_counts'].mean():.2f}")
 print(f"Mean genes per cell: {adata.obs['n_genes_by_counts'].mean():.2f}")
 print(f"Mean mitochondrial %: {adata.obs['pct_counts_mt'].mean():.2f}%"print("=" * 50)
-print("✅ QUALITY CONTROL COMPLETE!")
+print("QUALITY CONTROL COMPLETE!")
 
