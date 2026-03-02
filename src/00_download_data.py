@@ -3,19 +3,18 @@ import urllib.request
 import ssl
 import certifi
 
-# Define paths
+
 DATA_DIR = "data"
 os.makedirs(DATA_DIR, exist_ok=True)
 
-# Create SSL context with certifi certificates
+#Create SSL context with certifi certificates
 ssl_context = ssl.create_default_context(cafile=certifi.where())
 
-# Headers to mimic a browser request
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 }
 
-# 10x Genomics Human Heart URLs
+#10x Genomics Human Heart URLs
 urls = {
     "scRNA.tar.gz": "https://cf.10xgenomics.com/samples/cell-exp/3.0.0/heart_1k_v3/heart_1k_v3_filtered_feature_bc_matrix.tar.gz",
     "spatial.tar.gz": "https://cf.10xgenomics.com/samples/spatial-exp/1.1.0/V1_Human_Heart/V1_Human_Heart_filtered_feature_bc_matrix.tar.gz",
