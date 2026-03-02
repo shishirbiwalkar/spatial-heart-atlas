@@ -9,10 +9,10 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set working directory to script location
+#Set working directory to script location
 os.chdir('/Users/shishirbiwalkar/Github/spatial-heart-atlas')
 
-# Set up visual settings
+#Set up visual settings
 esc.settings.verbosity = 3
 sc.settings.set_figure_params(dpi=100, facecolor='white', frameon=False)
 sc.settings.plot_suffix = ''
